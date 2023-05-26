@@ -3,7 +3,9 @@ insert into cozinha (nome) values ('Indiana');
 insert into cozinha (nome) values ('Tailandesa');
 
 insert into restaurante (nome, taxa_frete, cozinha_id) values ('Maria Fumaça', 10.00, 1);
-insert into restaurante (nome, taxa_frete, cozinha_id) values ('Tia Lu', 5.00,2);
+insert into restaurante (nome, taxa_frete, cozinha_id) values ('Tia Lu', 5.00, 2);
+insert into restaurante (nome, taxa_frete, cozinha_id) values ('Bon Vivant', 7.00, 3);
+insert into restaurante (nome, taxa_frete, cozinha_id) values ('Lagosta', 13, 1);
 
 insert into forma_pagamento (descricao) values ('Boleto Bancario');
 insert into forma_pagamento (descricao) values ('Cartão de Crédito');
