@@ -7,12 +7,13 @@ import com.algaworks.algafood.domain.repository.RestauranteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
+
+import static com.algaworks.algafood.infrastructure.repository.spec.RestauranteSpecs.*;
 
 @RestController
 @RequestMapping("/teste")
@@ -29,6 +30,11 @@ public class TesteController {
         return cozinhaRepository.findTodasByNomeContaining(nome);
     }
 
+    @GetMapping("/cozinhas/primeira")
+    public Optional<Cozinha> primeiraCozinha() {
+        return cozinhaRepository.buscarPrimeiro();
+    }
+
     @GetMapping("/cozinhas/unica-por-nome")
     public Optional<Cozinha> cozinhaPorNome(String nome) {
         return cozinhaRepository.findByNome(nome);
@@ -39,9 +45,9 @@ public class TesteController {
         return restauranteRepository.findByTaxaFreteBetween(taxaInicial, taxaFinal);
     }
 
-    @GetMapping("/restaurantes/por-nome-restaurante-e-cozinha")
+    @GetMapping("/restaurantes/por-nome")
     public List<Restaurante> restaurantePorNomeECozinha(String nome,Long cozinhaId) {
-        return restauranteRepository.findByNomeContainingAndCozinhaId(nome, cozinhaId);
+        return restauranteRepository.consultarPorNome(nome, cozinhaId);
     }
 
     @GetMapping("/restaurantes/primeiro-por-nome")
@@ -62,5 +68,20 @@ public class TesteController {
     @GetMapping("/restaurantes/count-por-cozinha")
     public int restauranteCountCozinha(Long cozinhaId) {
         return restauranteRepository.countByCozinhaId(cozinhaId);
+    }
+
+    @GetMapping("/restaurantes/por-nome-e-frete")
+    public List<Restaurante> restaurantesPorNomeFrete(String nome, BigDecimal taxaInicial, BigDecimal taxaFinal) {
+        return restauranteRepository.find(nome, taxaInicial, taxaFinal);
+    }
+
+    @GetMapping("/restaurantes/com-frete-gratis")
+    public List<Restaurante> restaurantesComFreteGratis(String nome) {
+        return restauranteRepository.findComFreteGratis(nome);
+    }
+
+    @GetMapping("/restaurantes/primeiro")
+    public Optional<Restaurante> restaurantePrimeiro() {
+        return restauranteRepository.buscarPrimeiro();
     }
 }
