@@ -1,3 +1,31 @@
+set foreign_key_checks = 0;
+
+delete from algafood.cidade;
+delete from algafood.cozinha;
+delete from algafood.estado;
+delete from algafood.forma_pagamento;
+delete from algafood.grupo;
+delete from algafood.permissao;
+delete from algafood.grupo_permissao;
+delete from algafood.produto;
+delete from algafood.restaurante;
+delete from algafood.restaurante_forma_pagamento;
+delete from algafood.usuario;
+delete from algafood.usuario_grupo;
+
+set foreign_key_checks = 1;
+
+alter table algafood.cidade auto_increment = 1;
+alter table algafood.cozinha auto_increment = 1;
+alter table algafood.estado auto_increment = 1;
+alter table algafood.forma_pagamento auto_increment = 1;
+alter table algafood.permissao auto_increment = 1;
+alter table algafood.grupo auto_increment = 1;
+alter table algafood.produto auto_increment = 1;
+alter table algafood.restaurante auto_increment = 1;
+alter table algafood.usuario auto_increment = 1;
+
+
 insert into cozinha (id, nome) values (1, 'Tailandesa');
 insert into cozinha (id, nome) values (2, 'Indiana');
 insert into cozinha (id, nome) values (3, 'Argentina');
